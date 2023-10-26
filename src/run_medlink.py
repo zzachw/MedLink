@@ -16,7 +16,7 @@ def parse_arguments(parser):
     parser.add_argument('--alpha', type=float, default=0.5)
     parser.add_argument('--beta', type=float, default=0.5)
     parser.add_argument('--gamma', type=float, default=1.0)
-    parser.add_argument('--neg_sample', type=bool, default=True)
+    parser.add_argument('--no_neg_sample', action="store_true", default=False)
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--lr", type=float, default=5e-4)
@@ -24,11 +24,11 @@ def parse_arguments(parser):
     parser.add_argument("--monitor_criterion", type=str, default="max")
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--checkpoint', type=str, default=None)
-    parser.add_argument('--no-train', type=bool, default=False)
+    parser.add_argument('--no-train', action="store_true", default=False)
     parser.add_argument('--note', type=str, default='')
     parser.add_argument('--exp-name-attr', type=list, default=['dataset', 'code', 'model', 'note'])
     parser.add_argument("--official-run", action="store_true", default=False)
-    parser.add_argument("--no-cuda", type=bool, default=False)
+    parser.add_argument("--no-cuda", action="store_true", default=False)
     args = parser.parse_args()
     return args
 
@@ -38,7 +38,7 @@ args = helper.args
 
 """ load data """
 read_path = os.path.join(data_path, f'{args.dataset}/processed/{args.dataset}_{args.code}')
-tr_spt = 'train_w_neg' if args.neg_sample else 'train'
+tr_spt = 'train' if args.no_neg_sample else 'train_w_neg'
 train_corpus, train_queries, train_qrels = GenericDataLoader(read_path).load(split=tr_spt)
 val_corpus, val_queries, val_qrels = GenericDataLoader(read_path).load(split='val')
 test_corpus, test_queries, test_qrels = GenericDataLoader(read_path).load(split='test')
