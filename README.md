@@ -3,8 +3,7 @@
 This repository contains data and code for the KDD'23 paper
 titled [MedLink: De-Identified Patient Health Record Linkage](https://dl.acm.org/doi/10.1145/3580305.3599427).
 
-You can also check out a 2-minute pitch talk on this project available
-on [YouTube](https://www.youtube.com/watch?v=dqm3s6vYReI).
+You can also check out a 2-minute pitch talk on this project on [YouTube](https://www.youtube.com/watch?v=dqm3s6vYReI).
 
 ## Dependencies
 
